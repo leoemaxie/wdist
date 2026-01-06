@@ -14,7 +14,7 @@ plugins {
 kotlin {
     androidTarget {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+            jvmTarget.set(JvmTarget.JVM_17)
         }
     }
     
@@ -60,8 +60,8 @@ kotlin {
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.kotlinx.serialization.json)
-            implementation(libs.coil.compose)
-            implementation(libs.kotlinx.datetime)
+            // implementation(libs.coil.compose)
+            // implementation(libs.kotlinx.datetime)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -72,13 +72,13 @@ kotlin {
             implementation(libs.ktor.client.cio)
         }
         jsMain.dependencies {
-            implementation(libs.ktor.client.js)
+            implementation(libs.ktor.client.browser)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
         wasmJsMain.dependencies {
-            implementation(libs.ktor.client.js)
+            implementation(libs.ktor.client.browser)
         }
     }
 }
@@ -105,8 +105,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
