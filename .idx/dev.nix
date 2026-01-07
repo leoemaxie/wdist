@@ -45,6 +45,10 @@
       onCreate = {
         # Example: install JS dependencies from NPM
         # npm-install = "npm install";
+        #!/bin/bash
+        # export JAVA_HOME=$(readlink -e $(type -p javac) | sed  -e 's/\/bin\/javac//g')
+        #export IDEA_JDK=/usr/lib/jvm/zulu-8-amd64
+        # ln -sfT $JAVA_HOME $ENVSDIR/JDK
       };
       # Runs when the workspace is (re)started
       onStart = {
