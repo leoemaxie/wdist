@@ -1,33 +1,52 @@
 {
-    "name": "Kotlin Multiplatform Dev",
-    "build": {
-      "dockerfile": "Dockerfile",
-      "context": ".."
-    },
-    "features": {
-      "ghcr.io/devcontainers/features/git:1": {},
-      "ghcr.io/devcontainers/features/github-cli:1": {}
-    },
-    "customizations": {
-      "vscode": {
-        "extensions": [
-          "fwcd.kotlin",
-          "vscjava.vscode-java-pack",
-          "esbenp.prettier-vscode",
-          "redhat.vscode-yaml"
+  "name": "Kotlin Multiplatform Dev",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "fwcd.kotlin",
+        "vscjava.vscode-java-pack",
+        "esbenp.prettier-vscode",
+        "redhat.vscode-yaml",
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ],
+      "settings": {
+        "kotlin.languageServer.enabled": true,
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-17",
+            "path": "/usr/lib/jvm/temurin-17-jdk-amd64",
+            "default": true
+          }
         ],
-        "settings": {
-          "kotlin.languageServer.enabled": true,
-          "java.configuration.runtimes": [
-            {
-              "name": "JavaSE-17",
-              "path": "/usr/lib/jvm/temurin-17-jdk-amd64"
-            }
-          ]
+        "java.jdt.ls.java.home": "/usr/lib/jvm/temurin-17-jdk-amd64",
+        "files.exclude": {
+          "**/.gradle": true,
+          "**/build": true,
+          "**/.kotlin": true
+        },
+        "search.exclude": {
+          "**/build": true,
+          "**/.gradle": true,
+          "**/node_modules": true
         }
       }
-    },
-    "postCreateCommand": "./gradlew --version",
-    "remoteUser": "vscode"
-  }
-  
+    }
+  },
+  "postCreateCommand": "bash -c 'chmod +x gradlew && ./gradlew --version && cd server && pip3 install -r requirements.txt'",
+  "remoteUser": "vscode",
+  "mounts": [
+    "source=${localWorkspaceFolder}/.gradle,target=/home/vscode/.gradle,type=bind,consistency=cached"
+  ]
+}
