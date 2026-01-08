@@ -1,5 +1,4 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -34,12 +33,6 @@ kotlin {
         binaries.executable()
     }
     
-    @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
-        browser()
-        binaries.executable()
-    }
-    
     sourceSets {
         androidMain.dependencies {
             implementation(compose.preview)
@@ -59,8 +52,8 @@ kotlin {
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.kotlinx.serialization.json)
-            // implementation(libs.coil.compose)
-            // implementation(libs.kotlinx.datetime)
+            implementation(libs.coil.compose)
+            implementation(libs.kotlinx.datetime)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -71,13 +64,10 @@ kotlin {
             implementation(libs.ktor.client.cio)
         }
         jsMain.dependencies {
-            implementation(libs.ktor.client.browser)
+            implementation(libs.ktor.client.js)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
-        }
-        wasmJsMain.dependencies {
-            implementation(libs.ktor.client.browser)
         }
     }
 }

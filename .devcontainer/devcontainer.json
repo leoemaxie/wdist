@@ -1,0 +1,33 @@
+{
+    "name": "Kotlin Multiplatform Dev",
+    "build": {
+      "dockerfile": "Dockerfile",
+      "context": ".."
+    },
+    "features": {
+      "ghcr.io/devcontainers/features/git:1": {},
+      "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "fwcd.kotlin",
+          "vscjava.vscode-java-pack",
+          "esbenp.prettier-vscode",
+          "redhat.vscode-yaml"
+        ],
+        "settings": {
+          "kotlin.languageServer.enabled": true,
+          "java.configuration.runtimes": [
+            {
+              "name": "JavaSE-17",
+              "path": "/usr/lib/jvm/temurin-17-jdk-amd64"
+            }
+          ]
+        }
+      }
+    },
+    "postCreateCommand": "./gradlew --version",
+    "remoteUser": "vscode"
+  }
+  
