@@ -9,9 +9,9 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import org.wdist.com.models.AIResponse
+import org.wdist.com.AIResponse
 
-class ApiService {
+class ApiService(private val baseUrl: String = "http://127.0.0.1:5001") {
     private val client = HttpClient {
         install(ContentNegotiation) {
             json(Json {
@@ -21,7 +21,7 @@ class ApiService {
     }
 
     suspend fun getResponse(image: ByteArray): AIResponse {
-        val response = client.post("http://127.0.0.1:5001/get-response") {
+        val response = client.post("$baseUrl/get-response") {
             contentType(ContentType.Image.JPEG)
             setBody(image)
         }

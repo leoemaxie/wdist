@@ -28,10 +28,11 @@ kotlin {
     
     jvm()
     
-    js {
-        browser()
-        binaries.executable()
-    }
+    // Temporarily disabled: Coil doesn't support JS/Web targets yet
+    // js {
+    //     browser()
+    //     binaries.executable()
+    // }
     
     sourceSets {
         androidMain.dependencies {
@@ -63,9 +64,10 @@ kotlin {
             implementation(libs.kotlinx.coroutinesSwing)
             implementation(libs.ktor.client.cio)
         }
-        jsMain.dependencies {
-            implementation(libs.ktor.client.js)
-        }
+        // Temporarily disabled: Coil doesn't support JS/Web targets yet
+        // jsMain.dependencies {
+        //     implementation(libs.ktor.client.js)
+        // }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }

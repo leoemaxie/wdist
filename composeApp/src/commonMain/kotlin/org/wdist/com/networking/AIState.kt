@@ -1,6 +1,6 @@
 package org.wdist.com.networking
 
-import org.wdist.com.models.AIResponse
+import org.wdist.com.AIResponse
 
 data class AIState(
     val isLoading: Boolean = false,

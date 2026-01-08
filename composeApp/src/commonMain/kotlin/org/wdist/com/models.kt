@@ -26,7 +26,7 @@ enum class ContentType {
     SCREENSHOT,
     @SerialName("text")
     TEXT,
-    @Serialname("other")
+    @SerialName("other")
     OTHER,
 }
 
